@@ -1,72 +1,110 @@
 # RAG-Powered Q&A Chatbot
 
-A document-aware chatbot powered by Google's Gemma 2B model and LangChain's RAG (Retrieval Augmented Generation) capabilities.
+A question-answering chatbot that uses Retrieval-Augmented Generation (RAG) to provide accurate answers based on your documents. Built with Streamlit, LangChain, and Groq.
 
 ## Features
 
-- Document-aware responses using RAG
-- Powered by Google's Gemma 2B model
-- Source citations for answers
-- Support for multiple document formats
-- Persistent chat history
-- Modern Streamlit UI
+- 🤖 Powered by Groq's LLama 3.3 70B model
+- 📚 Document processing with automatic chunking and embedding
+- 🔍 Semantic search using ChromaDB vector store
+- 💬 Interactive chat interface with Streamlit
+- 🔄 Automatic source citations
+- ⚡ Fast response times with Groq's API
+- 🛡️ Error handling with automatic retries
 
-## Setup
+## Prerequisites
 
-1. Clone this repository
-2. Create a virtual environment:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+- Python 3.11 or higher
+- A Groq API key (get one at [console.groq.com](https://console.groq.com))
+- (Optional) Homebrew for macOS users
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd langchain-rag
+```
+
+2. Create and activate a virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+```
+
 3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Copy `template.env` to `.env` and add your Hugging Face token:
-   ```bash
-   cp template.env .env
-   ```
-   Then edit `.env` and add your Hugging Face token.
+```bash
+pip install -r requirements.txt
+```
+
+4. Install additional system dependencies (macOS):
+```bash
+brew install libmagic  # Required for document processing
+```
+
+5. Set up environment variables:
+   - Copy the template: `cp template.env .env`
+   - Add your Groq API key to the `.env` file:
+```
+GROQ_API_KEY=your_groq_api_key_here
+PERSIST_DIRECTORY=db
+```
 
 ## Usage
 
-1. Place your documents in the `documents` folder. Supported formats include:
-   - PDF
-   - TXT
-   - DOCX
-   - And more (see Unstructured documentation)
+1. Add your documents:
+   - Place your documents (PDF, TXT, etc.) in the `documents` folder
+   - Supported formats include PDF, TXT, DOCX, and more
 
 2. Process the documents:
-   ```bash
-   python document_processor.py
-   ```
+```bash
+python document_processor.py
+```
 
-3. Run the application:
-   ```bash
-   streamlit run app.py
-   ```
+3. Run the chatbot:
+```bash
+streamlit run app.py
+```
 
-4. Open your browser and navigate to the provided URL (usually http://localhost:8501)
+4. Open your browser and navigate to `http://localhost:8501`
 
-## How it Works
+## Project Structure
 
-1. Documents are processed and split into chunks
-2. Text chunks are embedded using Sentence Transformers
-3. Embeddings are stored in a Chroma vector store
-4. When you ask a question:
-   - The question is embedded and similar chunks are retrieved
-   - Retrieved context is sent to Gemma 2B along with your question
-   - The model generates a response based on the context
-   - Sources are cited for transparency
+```
+langchain-rag/
+├── app.py              # Main Streamlit application
+├── document_processor.py # Document processing and embedding
+├── documents/          # Directory for your documents
+├── db/                # Vector store database
+├── requirements.txt    # Python dependencies
+├── .env               # Environment variables
+└── README.md          # This file
+```
 
-## Controls
+## How It Works
 
-- **Reprocess Documents**: Click this button in the sidebar to reprocess documents if you've added new ones
-- **Clear Chat**: Clears the chat history and starts a new conversation
+1. **Document Processing**:
+   - Documents are loaded from the `documents` folder
+   - Text is split into chunks with overlap for context preservation
+   - Chunks are embedded using HuggingFace's sentence transformers
+   - Embeddings are stored in a ChromaDB vector store
 
-## Notes
+2. **Question Answering**:
+   - User questions are processed through the RAG pipeline
+   - Relevant document chunks are retrieved using semantic search
+   - Groq's LLM generates answers based on the retrieved context
+   - Sources are automatically cited for transparency
 
-- The quality of responses depends on the documents provided
-- The model works best with well-structured, clear documents
-- Processing time depends on document size and quantity 
+## Troubleshooting
+
+- If you encounter document processing issues, ensure `libmagic` is installed
+- For API errors, check your Groq API key and internet connection
+- The system includes automatic retry mechanisms for API calls
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 

@@ -1,0 +1,34 @@
+Artificial Intelligence Overview
+
+AI (Artificial Intelligence) is the simulation of human intelligence by machines. Here are some key concepts:
+
+1. Machine Learning
+Machine learning is a subset of AI that enables systems to learn and improve from experience without being explicitly programmed. It uses statistical techniques to give computers the ability to "learn" with data.
+
+2. Deep Learning
+Deep learning is a type of machine learning based on artificial neural networks. It's particularly good at:
+- Image recognition
+- Natural language processing
+- Speech recognition
+- Pattern detection
+
+3. Natural Language Processing (NLP)
+NLP is the ability of computers to understand, interpret, and generate human language. Applications include:
+- Machine translation
+- Chatbots
+- Text summarization
+- Sentiment analysis
+
+4. Computer Vision
+Computer vision enables machines to understand and process visual information from the world, similar to human vision. It's used in:
+- Facial recognition
+- Object detection
+- Autonomous vehicles
+- Medical image analysis
+
+5. Robotics
+Robotics combines AI with mechanical engineering to create machines that can perform physical tasks. Applications include:
+- Manufacturing automation
+- Surgery assistance
+- Space exploration
+- Home assistance 
