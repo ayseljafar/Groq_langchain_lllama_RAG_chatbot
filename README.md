@@ -22,7 +22,7 @@ A question-answering chatbot that uses Retrieval-Augmented Generation (RAG) to p
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/ayseljafar/Groq_langchain_lllama_RAG_chatbot
 cd langchain-rag
 ```
 
